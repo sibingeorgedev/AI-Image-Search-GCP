@@ -1,0 +1,24 @@
+<div class="blur-container"></div>
+
+<div class="search-container" [class.move-up]="isResultsVisible">
+  <div class="search-box" 
+      [class.focused]="isSearchBoxFocused">
+    <input
+      type="text"
+      placeholder="Enter Your Prompt" 
+      (keyup.enter)="generateImages()"
+      (focus)="onSearchBoxFocus()"
+      [(ngModel)]="searchText">
+    <button
+      (click)="generateImages()">
+      Search
+    </button>
+  </div>
+</div>
+
+<div class="search-results" [class.active]="isResultsVisible">
+  <app-spinner *ngIf="isImageLoading"></app-spinner>
+  <img *ngIf="previewImage.length > 0 && !isImageLoading" [src]="previewImage" style="width: 400px;" />
+</div>
+
+<app-toaster></app-toaster>
